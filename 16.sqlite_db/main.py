@@ -20,9 +20,9 @@ cur = db.cursor()
 """INSERT INTO название талицы VALUES - добавление записи """
 # cur.execute("INSERT INTO articles VALUES ('VK is cool!', 'VK is realy cool!', 50, 'Moder')")
 
-cur.execute("SELECT * FROM articles")
-print(cur.fetchall())
-
+cur.execute("SELECT rowid, * FROM articles")
+# print(cur.fetchall())
+print(cur.fetchmany(1))
 db.commit()
 
 # Закрываем работу с дб, если открыл нужно закрыть
