@@ -20,9 +20,24 @@ cur = db.cursor()
 """INSERT INTO название талицы VALUES - добавление записи """
 # cur.execute("INSERT INTO articles VALUES ('VK is cool!', 'VK is realy cool!', 50, 'Moder')")
 
-cur.execute("SELECT rowid, * FROM articles")
-# print(cur.fetchall())
-print(cur.fetchmany(1))
+
+# print(cur.fetchall()) - вывод
+# print(cur.fetchmany(1)) - вывод 1 записи
+# print(cur.fetchone()) - вывод первой записи
+# print(cur.fetchone()[1]) - вывод первой записи первый столбец
+
+# Удаление данных
+# cur.execute("DELETE FROM articles WHERE rowid = 2")
+
+# Изменение данных
+cur.execute("UPDATE articles SET avtor='Moder', views = 1 WHERE title = 'Yandex is cool!'")
+
+# Выборка данных
+cur.execute("SELECT rowid, * FROM articles WHERE rowid < 5 ORDER BY views DESC")
+items = cur.fetchall()
+for el in items:
+    print(el[1] + "\n" + el[4])
+
 db.commit()
 
 # Закрываем работу с дб, если открыл нужно закрыть
